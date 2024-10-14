@@ -1,0 +1,39 @@
+# Build results
+[Dd]ebug/
+[Rr]elease/
+[xX]64/
+[xX]86/
+[Aa][Rr][Mm]/
+[Bb]in/
+[Oo]bj/
+
+# Visual Studio files
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Rider files
+.idea/
+*.sln.iml
+
+# ASP.NET Core files
+appsettings*.json
+*.db
+*.pdb
+*.dll
+*.exe
+
+# User-specific files
+*.swp
+*.swo
+*.tmp
+*.log
+
+# Others
+*.cache
+*.gzip
+*.zip
+*.tgz
+*.tar.gz
