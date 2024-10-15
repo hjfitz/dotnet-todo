@@ -8,7 +8,9 @@ public interface ITodoService
 
     public Task DeleteTodoById(string id);
 
-    public Task<TodoItem> CreateTodo(string id, string title);
+    public Task<TodoItem> CreateTodo(string title);
 
     public Task<TodoItem?> MarkTodoAsDone(string id);
+
+    public Task<List<TodoItem>> GetTodos();
 }

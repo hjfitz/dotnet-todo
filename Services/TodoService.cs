@@ -35,11 +35,16 @@ namespace Todo.Services
             return found;
         }
 
-        public async Task<TodoItem> CreateTodo(string id, string title)
+        public async Task<TodoItem> CreateTodo(string title)
         {
-            var newTodo = new TodoItem { TodoId = id, Done = false, Title = title };
+            var todoId = Guid.NewGuid().ToString();
+            var newTodo = new TodoItem { 
+		TodoId = todoId,
+		       Done = false,
+		       Title = title
+	    };
 
-            _db.Todos.Attach(newTodo);
+            _db.Todos.Add(newTodo);
             await _db.SaveChangesAsync();
 
             return newTodo;
@@ -58,6 +63,12 @@ namespace Todo.Services
 
             await _db.SaveChangesAsync();
 
+            return found;
+        }
+
+        public async Task<List<TodoItem>> GetTodos()
+        {
+            var found = await _db.Todos.ToListAsync();
             return found;
         }
 

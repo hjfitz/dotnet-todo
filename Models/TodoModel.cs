@@ -1,15 +1,12 @@
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Todo.Models
 {
 
     public class TodoItem
     {
-        // cool, this is implicitely set to the key
-        // because the field has "id"
-        // could use data annotations (eg [Key])
+        [Key]
         public string TodoId { get; set; }
 
         public string Title { get; set; }
