@@ -10,7 +10,7 @@ public interface ITodoService
 
     public Task<TodoItem> CreateTodo(string title);
 
-    public Task<TodoItem> UpdateTodo(TodoItem todo, string? newTitle, bool? newDone );
+    public Task<TodoItem> UpdateTodo(TodoItem todo, string? newTitle, bool? newDone);
 
     public Task<List<TodoItem>> GetTodos();
 }

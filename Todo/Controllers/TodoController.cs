@@ -73,20 +73,20 @@ namespace Todo.Controllers
             return Ok();
         }
 
-	[HttpDelete("{id}")]
-	public async Task<IActionResult> DeleteTodo(string id)
-	{
-	    var found = await _todoService.FindTodoById(id);
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteTodo(string id)
+        {
+            var found = await _todoService.FindTodoById(id);
 
-	    if (found == null)
-	    {
-		return NotFound();
-	    }
+            if (found == null)
+            {
+                return NotFound();
+            }
 
-	    await _todoService.DeleteTodoById(id);
+            await _todoService.DeleteTodoById(id);
 
-	    return Ok();
-	}
+            return Ok();
+        }
 
 
     }

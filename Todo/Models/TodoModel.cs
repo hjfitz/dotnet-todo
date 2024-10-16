@@ -6,7 +6,7 @@ namespace Todo.Models
 
     public class TodoItem
     {
-	[Key]
+        [Key]
         public string TodoId { get; set; }
 
         public string Title { get; set; }

@@ -51,11 +51,11 @@ namespace Todo.Services
             return newTodo;
         }
 
-        public async Task<TodoItem> UpdateTodo(TodoItem todo, string? newTitle, bool? newDone )
+        public async Task<TodoItem> UpdateTodo(TodoItem todo, string? newTitle, bool? newDone)
         {
 
-	    todo.Title = newTitle ?? todo.Title;
-	    todo.Done = newDone ?? todo.Done;
+            todo.Title = newTitle ?? todo.Title;
+            todo.Done = newDone ?? todo.Done;
 
             _db.Todos.Attach(todo);
 

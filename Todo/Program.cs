@@ -17,7 +17,7 @@ public class Program
         builder.Services.AddDbContext<TodoContext>(opt => opt.UseInMemoryDatabase("TodoList"));
         builder.Services.AddDatabaseDeveloperPageExceptionFilter();
         builder.Services.AddScoped<ITodoService, TodoService>();
-	builder.Services.AddControllers();
+        builder.Services.AddControllers();
 
         var app = builder.Build();
 
@@ -29,14 +29,14 @@ public class Program
 
         app.UseHttpsRedirection();
 
-	app.UseRouting();
+        app.UseRouting();
 
-	app.MapControllers();
+        app.MapControllers();
 
-	app.UseEndpoints(endpoints => 
-	{
-	    endpoints.MapControllers();
-	});
+        app.UseEndpoints(endpoints =>
+        {
+            endpoints.MapControllers();
+        });
 
         app.Run();
 
