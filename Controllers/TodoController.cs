@@ -15,17 +15,24 @@ namespace Todo.Controllers
             _todoService = todoService;
         }
 
-        [HttpGet("ping")]
-        public IActionResult ping()
-        {
-            return Ok();
-        }
-
-        [HttpGet]
+        [HttpGet("all")]
         public async Task<IActionResult> GetTodos()
         {
             var allTodos = await _todoService.GetTodos();
             return Ok(allTodos);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetTodo(string id)
+        {
+            var found = await _todoService.FindTodoById(id);
+
+            if (found == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(found);
         }
 
         [HttpPost]
@@ -37,12 +44,50 @@ namespace Todo.Controllers
             }
 
 
-            await _todoService.CreateTodo(
+            var createdTodo = await _todoService.CreateTodo(
                 title: createTodoItemDto.Title
             );
 
-            return Created();
+            return Ok(createdTodo);
         }
+
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> ToggleTodoDoneState(
+            string id,
+            [FromBody] UpdateTodoItemDTO updateTodoItemDTO
+        )
+        {
+            var found = await _todoService.FindTodoById(id);
+
+            if (found == null)
+            {
+                return NotFound();
+            }
+
+            var updatedTodo = await _todoService.UpdateTodo(
+                found,
+                updateTodoItemDTO.Title,
+                updateTodoItemDTO.Done
+            );
+
+            return Ok();
+        }
+
+	[HttpDelete("{id}")]
+	public async Task<IActionResult> DeleteTodo(string id)
+	{
+	    var found = await _todoService.FindTodoById(id);
+
+	    if (found == null)
+	    {
+		return NotFound();
+	    }
+
+	    await _todoService.DeleteTodoById(id);
+
+	    return Ok();
+	}
+
 
     }
 }

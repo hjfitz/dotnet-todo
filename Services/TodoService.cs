@@ -38,11 +38,12 @@ namespace Todo.Services
         public async Task<TodoItem> CreateTodo(string title)
         {
             var todoId = Guid.NewGuid().ToString();
-            var newTodo = new TodoItem { 
-		TodoId = todoId,
-		       Done = false,
-		       Title = title
-	    };
+            var newTodo = new TodoItem
+            {
+                TodoId = todoId,
+                Done = false,
+                Title = title
+            };
 
             _db.Todos.Add(newTodo);
             await _db.SaveChangesAsync();
@@ -50,20 +51,17 @@ namespace Todo.Services
             return newTodo;
         }
 
-        public async Task<TodoItem?> MarkTodoAsDone(string id)
+        public async Task<TodoItem> UpdateTodo(TodoItem todo, string? newTitle, bool? newDone )
         {
-            var found = await _db.Todos.FirstOrDefaultAsync(todo => todo.TodoId == id);
 
-            if (found == null)
-            {
-                return null;
-            }
+	    todo.Title = newTitle ?? todo.Title;
+	    todo.Done = newDone ?? todo.Done;
 
-            found.Done = true;
+            _db.Todos.Attach(todo);
 
             await _db.SaveChangesAsync();
 
-            return found;
+            return todo;
         }
 
         public async Task<List<TodoItem>> GetTodos()
