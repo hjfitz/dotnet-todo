@@ -52,7 +52,7 @@ namespace Todo.Controllers
         }
 
         [HttpPatch("{id}")]
-        public async Task<IActionResult> ToggleTodoDoneState(
+        public async Task<IActionResult> UpdateTodo(
             string id,
             [FromBody] UpdateTodoItemDTO updateTodoItemDTO
         )
@@ -87,7 +87,6 @@ namespace Todo.Controllers
 
             return Ok();
         }
-
 
     }
 }
